@@ -1,0 +1,68 @@
+<div class="mural-wrapper">
+
+  <header class="mural-header">
+    <h1>Mural de Recados</h1>
+    <p>Leia nossas recados e deixe sua curtida em seu post favorito</p>
+  </header>
+
+  <section class="quadro">
+    @for (recado of recados; track recado.id) {
+      <div
+        class="nota"
+        [class.nota-escolhida]="recadoEscolhido?.id === recado.id"
+        (click)="escolherRecado(recado)">
+        <span class="pin"></span>
+        <p class="nota-conteudo">{{ recado.recado }}</p>
+        <span class="nota-dono">— {{ recado.dono }}</span>
+      </div>
+    }
+  </section>
+
+  <section class="detalhe">
+    @if (recadoEscolhido) {
+      <div class="cartao-detalhe" [class.cartao-acessado]="recadoLido">
+        <div class="detalhe-cabecalho">
+          <h2>Dono do recado: {{ recadoEscolhido.dono }}</h2>
+          <span class="etiqueta" [class.etiqueta-lido]="recadoLido">
+            {{ recadoLido ? 'Lido' : 'Não lido' }}
+          </span>
+        </div>
+
+        <p class="detalhe-texto">{{ recadoEscolhido.recado }}</p>
+
+        <div class="acoes">
+          <button class="botao botao-secundario" (click)="alternarLido()">
+            {{ recadoLido ? 'Marcar como não lido' : 'Marcar como lido' }}
+          </button>
+
+          <button class="botao botao-curtir" (click)="curtir()">
+            Like
+          </button>
+
+          <span class="curtidas">{{ curtidas }} curtida{{ curtidas === 1 ? '' : 's' }}</span>
+        </div>
+      </div>
+    } @else {
+      <p class="nenhum-selecionado">
+        Nenhum recado foi selecionado, selecione o seu favorito.
+      </p>
+    }
+  </section>
+
+  <section class="novo-recado">
+    <input
+      type="text"
+      class="campo-conteudo"
+      placeholder="Postar um novo recado"
+      [(ngModel)]="novoRecadoConteudo"
+      (keyup.enter)="publicarRecado()" />
+
+    <button
+      class="botao botao-publicar"
+      [disabled]="novoRecadoConteudo.trim().length === 0"
+      (click)="publicarRecado()">
+      Publicar
+    </button>
+  </section>
+
+</div>
