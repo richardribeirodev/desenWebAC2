@@ -1,0 +1,6 @@
+.aguardando { background: yellow; padding: 2px 8px; }
+.confirmado { background: rgb(5, 119, 13); color: white; padding: 2px 8px; }
+.confirmar { background: rgb(58, 226, 105); color: white; }
+.remover { background: rgb(249, 121, 62); }
+.sublinhado { text-decoration: underline; }
+div { margin-bottom: 8px; }

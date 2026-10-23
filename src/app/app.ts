@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { MuralRecadosComponent } from './mural-recados/mural-recados';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [MuralRecadosComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('projetoAC1');
-}
+
+export class App { }

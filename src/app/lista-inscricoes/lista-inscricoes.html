@@ -1,0 +1,26 @@
+<h2>Participantes</h2>
+
+<p>Total: {{ tam }} | Confirmadas: {{ filtrados }} | Pendentes: {{ final }}</p>
+
+@if (lista.length === 0) {
+    <p>Sem participantes</p>
+}
+
+@for (novo2 of lista; track novo2.id) {
+    <div>
+        <b>{{ novo2.nome }}</b>  - {{ novo2.email }} - {{ novo2.oficina }}
+        <span [class]="novo2.situacao === 'aguardando' ? 'aguardando' : 'confirmado'">
+            {{ novo2.situacao }}
+        </span>
+        <button class="confirmar" [class.sublinhado]="novo2.situacao === 'confirmado'"
+            (click)="insc.confirmarInscricao(novo2.id)">
+            Confirmar inscrição
+        </button>
+        <button class="remover" (click)="insc.remover(novo2.id)">
+            Remover
+        </button>
+    </div>
+}
+
+<br>
+<a routerLink="/">CCadastrar</a>
